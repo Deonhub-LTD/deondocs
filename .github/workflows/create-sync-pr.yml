@@ -18,7 +18,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.INNOVATION_REPO_PAT }}
           commit-message: Update docs content
           title: "Update docs content"
           body: "This PR updates the docs content. Please review and approve."
