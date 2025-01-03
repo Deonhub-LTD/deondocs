@@ -1,0 +1,48 @@
+name: Sync Docs Content
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "content/docs/**"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout deondocs
+        uses: actions/checkout@v2
+        with:
+          path: deondocs
+          fetch-depth: 0
+
+      - name: Checkout innovation
+        uses: actions/checkout@v2
+        with:
+          repository: Deonhub-LTD/innovation
+          path: innovation
+          token: ${{ secrets.INNOVATION_REPO_PAT }}
+          fetch-depth: 0
+
+      - name: Sync docs content
+        run: |
+          # Remove existing docs content in innovation repo
+          rm -rf innovation/src/content/docs/*
+
+          # Copy new content from deondocs
+          cp -r deondocs/content/docs/* innovation/src/content/docs/
+
+          # Setup git in innovation repo
+          cd innovation
+          git config user.name 'GitHub Action'
+          git config user.email 'action@github.com'
+
+          # Commit and push if there are changes
+          git add src/content/docs
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Sync docs content from deondocs"
+            git push
+          fi

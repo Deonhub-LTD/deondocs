@@ -37,8 +37,4 @@ This project is licensed under the [MIT License](LICENSE).
 - Thanks to [fuma-nama](https://github.com/fuma-nama) for creating Fumadocs
 - All contributors who help improve this documentation
 
-## Contact
-
-For any questions or concerns, please open an issue in this repository or contact us through the [Deonhub website](https://www.deonhub.tz).
-
 Thank you for your interest in Deondocs and Deonhub!
