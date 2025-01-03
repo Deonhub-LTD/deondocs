@@ -14,7 +14,6 @@ jobs:
       - name: Checkout deondocs
         uses: actions/checkout@v2
         with:
-          path: deondocs
           fetch-depth: 0
 
       - name: Checkout innovation
@@ -31,7 +30,7 @@ jobs:
           rm -rf innovation/src/content/docs/*
 
           # Copy new content from deondocs
-          cp -r deondocs/content/docs/* innovation/src/content/docs/
+          cp -r content/docs/* innovation/src/content/docs/
 
           # Setup git in innovation repo
           cd innovation

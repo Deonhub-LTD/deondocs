@@ -1,0 +1,25 @@
+name: Create Sync PR
+
+on:
+  push:
+    branches-ignore:
+      - main
+    paths:
+      - "content/docs/**"
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout deondocs
+        uses: actions/checkout@v2
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update docs content
+          title: "Update docs content"
+          body: "This PR updates the docs content. Please review and approve."
+          branch: update-docs-content
+          base: main
